@@ -1,0 +1,302 @@
+{
+  "info": {
+    "name": "AWS Cloud App - Segunda Entrega",
+    "description": "Colección de requests para probar todos los endpoints de la aplicación",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Alumnos",
+      "item": [
+        {
+          "name": "1. Crear Alumno",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombres\": \"Juan\",\n  \"apellidos\": \"Pérez García\",\n  \"matricula\": \"A00123456\",\n  \"promedio\": 8.5,\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/alumnos",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["alumnos"]
+            }
+          }
+        },
+        {
+          "name": "2. Listar Alumnos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/alumnos",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["alumnos"]
+            }
+          }
+        },
+        {
+          "name": "3. Obtener Alumno por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/alumnos/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["alumnos", "1"]
+            }
+          }
+        },
+        {
+          "name": "4. Actualizar Alumno",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"promedio\": 9.0,\n  \"nombres\": \"Juan Carlos\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/alumnos/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["alumnos", "1"]
+            }
+          }
+        },
+        {
+          "name": "5. Subir Foto de Perfil",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "foto",
+                  "type": "file",
+                  "src": "/ruta/a/tu/foto.jpg"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3000/alumnos/1/fotoPerfil",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["alumnos", "1", "fotoPerfil"]
+            }
+          }
+        },
+        {
+          "name": "6. Enviar Email (SNS)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/alumnos/1/email",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["alumnos", "1", "email"]
+            }
+          }
+        },
+        {
+          "name": "7. Login - Crear Sesión",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/alumnos/1/session/login",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["alumnos", "1", "session", "login"]
+            }
+          }
+        },
+        {
+          "name": "8. Verificar Sesión",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sessionString\": \"COPIAR_SESSION_STRING_DEL_LOGIN\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/alumnos/1/session/verify",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["alumnos", "1", "session", "verify"]
+            }
+          }
+        },
+        {
+          "name": "9. Logout - Cerrar Sesión",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sessionId\": \"COPIAR_SESSION_ID_DEL_LOGIN\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/alumnos/1/session/logout",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["alumnos", "1", "session", "logout"]
+            }
+          }
+        },
+        {
+          "name": "10. Eliminar Alumno",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/alumnos/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["alumnos", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Profesores",
+      "item": [
+        {
+          "name": "1. Crear Profesor",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombres\": \"María\",\n  \"apellidos\": \"González López\",\n  \"numeroEmpleado\": 12345,\n  \"horasClase\": 20\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/profesores",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["profesores"]
+            }
+          }
+        },
+        {
+          "name": "2. Listar Profesores",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/profesores",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["profesores"]
+            }
+          }
+        },
+        {
+          "name": "3. Obtener Profesor por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/profesores/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["profesores", "1"]
+            }
+          }
+        },
+        {
+          "name": "4. Actualizar Profesor",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"horasClase\": 25\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/profesores/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["profesores", "1"]
+            }
+          }
+        },
+        {
+          "name": "5. Eliminar Profesor",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/profesores/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["profesores", "1"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

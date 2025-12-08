@@ -26,6 +26,7 @@ export class ProfesorController {
   }
 
   @Post()
+  @HttpCode(HttpStatus.CREATED)
   @UsePipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }))
   create(@Body() dto: CreateProfesorDto) {
     return this.service.create(dto);

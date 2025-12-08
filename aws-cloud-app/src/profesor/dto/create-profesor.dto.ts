@@ -1,10 +1,6 @@
 import { IsInt, IsNotEmpty, IsPositive, IsString, Min } from 'class-validator';
 
 export class CreateProfesorDto {
-  @IsInt()
-  @IsPositive()
-  id: number;
-
   @IsString()
   @IsNotEmpty()
   nombres: string;
@@ -17,7 +13,7 @@ export class CreateProfesorDto {
   @IsPositive()
   numeroEmpleado: number;
 
-  @IsPositive()
+  @IsInt()
   @Min(0)
   horasClase: number;
 }

@@ -1,11 +1,7 @@
-import { IsInt, IsNotEmpty, IsNumber, IsPositive, IsString, Min, Max } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString, Min, Max, MinLength } from 'class-validator';
 import { Type } from 'class-transformer';
 
 export class CreateAlumnoDto {
-  @IsInt()
-  @IsPositive()
-  id: number;
-
   @IsString()
   @IsNotEmpty()
   nombres: string;
@@ -14,6 +10,7 @@ export class CreateAlumnoDto {
   @IsNotEmpty()
   apellidos: string;
 
+  @IsString()
   @IsNotEmpty()
   matricula: string;
 
@@ -22,4 +19,9 @@ export class CreateAlumnoDto {
   @Min(0)
   @Max(10)
   promedio: number;
+
+  @IsString()
+  @IsNotEmpty()
+  @MinLength(6)
+  password: string;
 }

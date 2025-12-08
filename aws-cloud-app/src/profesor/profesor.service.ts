@@ -1,38 +1,41 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { Profesor } from './entities/profesor.entity';
 import { CreateProfesorDto } from './dto/create-profesor.dto';
 import { UpdateProfesorDto } from './dto/update-profesor.dto';
 
 @Injectable()
 export class ProfesorService {
-  private profesores: Profesor[] = [];
+  constructor(
+    @InjectRepository(Profesor)
+    private profesorRepository: Repository<Profesor>,
+  ) {}
 
-  findAll() {
-    return this.profesores;
+  async findAll(): Promise<Profesor[]> {
+    return this.profesorRepository.find();
   }
 
-  findOne(id: number): Profesor {
-    const prof = this.profesores.find(p => p.id === id);
-    if (!prof) throw new NotFoundException();
-    return prof;
+  async findOne(id: number): Promise<Profesor> {
+    const profesor = await this.profesorRepository.findOne({ where: { id } });
+    if (!profesor) throw new NotFoundException();
+    return profesor;
   }
 
-  create(dto: CreateProfesorDto) {
-    this.profesores.push(dto);
-    return dto;
+  async create(dto: CreateProfesorDto): Promise<Profesor> {
+    const profesor = this.profesorRepository.create(dto);
+    return this.profesorRepository.save(profesor);
   }
 
-  update(id: number, dto: UpdateProfesorDto) {
-    const index = this.profesores.findIndex(p => p.id === id);
-    if (index === -1) throw new NotFoundException();
-    this.profesores[index] = { ...this.profesores[index], ...dto };
-    return this.profesores[index];
+  async update(id: number, dto: UpdateProfesorDto): Promise<Profesor> {
+    const profesor = await this.findOne(id);
+    Object.assign(profesor, dto);
+    return this.profesorRepository.save(profesor);
   }
 
-  remove(id: number) {
-    const index = this.profesores.findIndex(p => p.id === id);
-    if (index === -1) throw new NotFoundException();
-    this.profesores.splice(index, 1);
+  async remove(id: number) {
+    const profesor = await this.findOne(id);
+    await this.profesorRepository.remove(profesor);
     return { deleted: true };
   }
 }
